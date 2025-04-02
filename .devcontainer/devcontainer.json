@@ -1,0 +1,38 @@
+{
+	"name": "Node.js & TypeScript",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bullseye",
+
+	"forwardPorts": [
+		3000,
+		3001,
+		5173
+	],
+
+	"runArgs": [ "--name", "${localEnv:USER}_mcp-kagi-dev" ],
+
+	"postCreateCommand": "npm run build",
+
+	"containerEnv": {
+		"KAGI_API_KEY": "${localEnv:KAGI_API_KEY}"
+	},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"editorconfig.editorconfig",
+				"github.copilot",
+				"github.copilot-chat",
+				"zainchen.json"
+			]
+		}
+	},
+
+	"features": {
+		"ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {
+			"setLocale": true,
+			"theme": "robbyrussell",
+			"plugins": "git npm",
+			"desiredLocale": "en_US.UTF-8 UTF-8"
+		}
+	}
+}

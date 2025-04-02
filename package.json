@@ -1,0 +1,56 @@
+{
+	"name": "mcp-kagi-search",
+	"version": "0.1.0",
+	"description": "A Model Context Protocol server implementation for Kagi's API using npx, so it can easily be run in n8n.",
+	"license": "MIT",
+	"author": "Goran Blažič (https://github.com/goranche)",
+	"homepage": "https://github.com/goranche/mcp-kagi-search#readme",
+	"keywords": [
+		"mcp",
+		"n8n",
+		"kagi",
+		"web search"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/goranche/mcp-kagi-search.git"
+	},
+	"bugs": {
+		"url": "https://github.com/goranche/mcp-kagi-search/issues"
+	},
+	"type": "module",
+	"bin": {
+		"mcp-kagi-search": "dist/index.js"
+	},
+	"main": "index.js",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "npm install && npx tsc && npx shx chmod +x dist/*.js && npm run lint",
+		"rebuild": "npm run clean && npm run build",
+		"clean": "rm -rf dist",
+		"wipe": "rm -rf dist node_modules",
+		"lint": "eslint *.ts",
+		"sse-server": "node dist/index.js 3001",
+		"std-server": "node dist/index.js",
+		"inspector": "npx @modelcontextprotocol/inspector -e KAGI_API_KEY=${KAGI_API_KEY}",
+		"sse-reload": "tsx watch --clear-screen=false index.ts 3001",
+		"std-reload": "tsx watch --clear-screen=false index.ts"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "1.8.0",
+		"express": "^5.1.0",
+		"node-fetch": "^3.3.2",
+		"zod": "^3.24.2"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.23.0",
+		"@types/express": "^5.0.1",
+		"shx": "^0.4.0",
+		"tsx": "^4.19.3",
+		"typescript": "^5.8.2",
+		"typescript-eslint": "^8.29.0"
+	}
+}
